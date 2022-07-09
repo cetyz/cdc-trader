@@ -51,7 +51,7 @@ class CDC:
         """Get candlesticks based on provided instrument_name and time_frame
         instrument_name: (str) the name of the instrument, e.g. BTC_USDC, or ETH_USDC, or ETH_BTC
         time_frame: (str) time frame of the candles; valid time frames: 1m, 5m, 15m, 30m, 1h, 4h, 6h, 12h, 1D, 7D, 14D, 1M
-        depth: (int) the number of candles to return (i think the max is 1000)
+        depth: (int) the number of candles to return (i think the max is 600)
 
         returns list of candlesticks
         """
@@ -131,5 +131,7 @@ if __name__ == '__main__':
         keys = json.load(f)
     cdc = CDC(keys, sandbox=False)
 
-    cdc.get_candlesticks('BTC_USDC', '1m', 10)
+    candles = cdc.get_candlesticks('BTC_USDC', '1m', 1000)
+
+    print(len(candles))
     # cdc.create_limit_order('BTC_USDC', 'BUY', 10000, 1)
